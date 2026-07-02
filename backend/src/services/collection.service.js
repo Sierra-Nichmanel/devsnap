@@ -1,26 +1,44 @@
 import { prisma } from "../config/prisma.js";
 
-export async function createCollection(userId, data) {
+export const createCollection = async (title, description, userId) => {
   return await prisma.collection.create({
     data: {
-      title: data.title,
-      description: data.description,
+      title,
+      description,
       userId,
     },
   });
-}
+};
 
-export async function getUserCollections(userId) {
+export const getCollections = async (userId) => {
   return await prisma.collection.findMany({
-    where: { userId },
-  });
-}
-
-export async function deleteCollection(userId, collectionId) {
-  return await prisma.collection.deleteMany({
     where: {
-      id: collectionId,
+      userId,
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
+
+export const deleteCollection = async (id, userId) => {
+  const collection = await prisma.collection.findFirst({
+    where: {
+      id,
       userId,
     },
   });
-}
+
+  if (!collection) {
+    return null;
+  }
+
+  await prisma.collection.delete({
+    where: {
+      id,
+    },
+  });
+
+  return collection;
+};

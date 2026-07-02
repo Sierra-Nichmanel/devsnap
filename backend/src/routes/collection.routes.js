@@ -1,18 +1,19 @@
 import express from "express";
-import {
-  create,
-  getAll,
-  remove,
-} from "../controllers/collection.controller.js";
 
-import { authMiddleware } from "../middleware/auth.middleware.js";
+import { protect } from "../middleware/auth.middleware.js";
+
+import { createCollectionController } from "../controllers/collection/createCollection.controller.js";
+import { getCollectionsController } from "../controllers/collection/getCollections.controller.js";
+import { deleteCollectionController } from "../controllers/collection/deleteCollection.controller.js";
 
 const router = express.Router();
 
-router.use(authMiddleware);
+router.use(protect);
 
-router.post("/", create);
-router.get("/", getAll);
-router.delete("/:id", remove);
+router.get("/", getCollectionsController);
+
+router.post("/", createCollectionController);
+
+router.delete("/:id", deleteCollectionController);
 
 export default router;

@@ -7,10 +7,8 @@ import collectionRoutes from "./routes/collection.routes.js";
 const app = express();
 
 app.use(cors());
-app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/collections", collectionRoutes);
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({
@@ -18,5 +16,9 @@ app.get("/", (req, res) => {
     message: "DevSnap API Running",
   });
 });
+
+app.use("/api/auth", authRoutes);
+
+app.use("/api/collections", collectionRoutes);
 
 export default app;
