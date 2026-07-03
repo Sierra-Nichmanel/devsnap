@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import Logo from "@/components/ui/Logo";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -45,9 +44,7 @@ export default function Signup() {
           onSubmit={handleSignup}
           className="w-[380px] rounded-2xl bg-white p-6 shadow-sm"
         >
-          <div>
-            <Logo className="size-4"/>
-          </div>
+
           <h1 className="text-xl font-bold text-center">SIGN UP</h1>
           <h3 className="text-center">Enter Your details below</h3>
 

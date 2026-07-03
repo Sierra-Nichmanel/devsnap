@@ -1,23 +1,24 @@
-import Button from "@/components/ui/Button";
-import Navbar from "@/components/ui/Navbar";
-import { ArrowRight } from "lucide-react";
+import Navbar from "@/components/ux/Navbar";
+import Hero from "@/components/home/Hero";
+import Features from "@/components/home/Features";
+import CTA from "@/components/home/CTA";
+import Footer from "@/components/home/Footer";
+import Testimonials from "@/components/home/Testimonials";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
-        <div>
-            <Navbar></Navbar>
-        </div>
-          
-        <div className="flex flex-col items-center justify-center px-6 pt-32 text-center">
-            <h1 className="text-5xl font-bold">Build & Test APIs Faster</h1>
+    <main className="min-h-screen bg-white">
+      <Navbar />
 
-            <p className="mt-4 text-slate-600">
-          DevSnap is a modern API workspace for developers
-            </p>
+      <Hero />
 
-            <Button className=" flex flex-row mt-6 px-6 py-3 text-xl font-light">Get Started <ArrowRight className="ml-4"/></Button>
-        </div>
-    </div>
+      <Features />
+
+      <Testimonials />
+
+      <CTA />
+
+      <Footer />
+    </main>
   );
 }

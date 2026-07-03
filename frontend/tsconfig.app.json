@@ -30,5 +30,5 @@
     "noFallthroughCasesInSwitch": true
   },
 
-  "include": ["src", "@/components/ui", "@/lib/utils.ts"]
+  "include": ["src", "src/components/ui", "src/lib/utils.ts"]
 }
