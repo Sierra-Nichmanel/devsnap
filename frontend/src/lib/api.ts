@@ -1,31 +1,37 @@
-const BASE_URL = "http://localhost:5000/api";
+import axios from "axios";
 
-type RequestOptions = {
-  method?: "GET" | "POST" | "PUT" | "DELETE";
-  body?: any;
-  token?: string | null;
-};
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-export async function api<T>(
-  endpoint: string,
-  options: RequestOptions = {},
-): Promise<T> {
-  const { method = "GET", body, token } = options;
+// Automatically attach JWT
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
 
-  const res = await fetch(`${BASE_URL}${endpoint}`, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-
-  const data = await res.json();
-
-  if (!res.ok) {
-    throw new Error(data.message || "API Error");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
 
-  return data;
-}
+  return config;
+});
+
+// Global error handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("token");
+
+      if (window.location.pathname !== "/login") {
+        window.location.href = "/login";
+      }
+    }
+
+    return Promise.reject(error);
+  },
+);
+
+export default api;

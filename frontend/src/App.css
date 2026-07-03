@@ -182,3 +182,22 @@
     border-right-color: var(--border);
   }
 }
+
+:root {
+  --color-primary: #2563EB;
+  --color-background: #F8FAFC;
+  --color-card: #FFFFFF;
+  --color-text-main: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-border: #E2E8F0;
+  --color-hover: #F1F5F9;
+  --color-success: #10B981;
+  --color-danger: #EF4444;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  margin: 0;
+  font-family: sans-serif;
+}

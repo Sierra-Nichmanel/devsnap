@@ -16,7 +16,7 @@ export default function Dashboard() {
 
       <div className="mt-4 space-y-2">
         {collections.map((c) => (
-          <div key={c.id} className="p-3 border rounded">
+          <div key={c.id} className="p-3 border rounded ">
             {c.title}
           </div>
         ))}

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { loginUser } from "../lib/auth";
+import Logo from "@/components/ui/Logo";
+import Input from "@/components/ui/input";
+import Button from "@/components/ui/button";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -32,45 +35,47 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen  bg-gray-100">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-blue-500">
       <form
         onSubmit={handleLogin}
-        className="bg-white w-96 p-6 rounded-lg shadow space-y-4"
+        className="w-[380px] rounded-2xl bg-white p-6 shadow-sm"
       >
-        <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
+        <div className="mb-6 px-22 flex justify-center">
+          <Logo />
+        </div>
 
-        {error && (
-          <div className="bg-red-100 text-red-700 px-3 py-2 rounded text-sm">
-            {error}
-          </div>
-        )}
+        <h1 className="mb-6 text-center text-2xl font-bold">Welcome Back</h1>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black"
-        />
+              <div className="space-y-3">
+                  <div>
+                      
+                  </div>
+                  <div>
+                      
+                  </div>
+          <Input
+            className="mt-4 mb-8"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            className="mt-4 mb-8"
+            placeholder="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-black"
-        />
-
-        <button
+        <Button
           disabled={loading}
-          className={`w-full py-2 rounded text-white transition ${
+          className={`w-full py-2 mt-12 rounded text-white transition ${
             loading
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-black hover:bg-gray-800"
           }`}
         >
           {loading ? "Logging in..." : "Login"}
-        </button>
+        </Button>
       </form>
     </div>
   );

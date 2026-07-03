@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Settings from "@/pages/Settings";
 import Collections from "@/pages/Collections";
+import CollectionWorkspace from "@/features/requests/pages/CollectionWorkspace";
 
 const Router = () => {
   return (
@@ -32,6 +33,14 @@ const Router = () => {
 
         <Route path="/settings" element={<Settings />} />
       </Route>
+      <Route
+        path="/collections/:id"
+        element={
+          <ProtectedRoute>
+            <CollectionWorkspace />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };
