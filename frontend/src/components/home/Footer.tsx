@@ -1,5 +1,8 @@
 import { Code2, } from "lucide-react";
 import { Link } from "react-router-dom";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -76,21 +79,21 @@ export default function Footer() {
               to="#"
               className="rounded-xl p-2 transition hover:bg-slate-800"
             >
-              
+              <FaGithub />
             </Link>
 
             <Link
               to="#"
               className="rounded-xl p-2 transition hover:bg-slate-800"
             >
-            
+              <FaLinkedin />
             </Link>
 
             <Link
               to="#"
               className="rounded-xl p-2 transition hover:bg-slate-800"
             >
-          
+              <FaTwitter />
             </Link>
           </div>
         </div>
